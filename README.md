@@ -1,9 +1,28 @@
 # Select2 for Yii
 
-Wrapper Widget to use jQuery Select2 in Yii application.
+Wrapper Widget to use jQuery Plugin Select2 in Yii application.
 
 Select2 script:
 https://github.com/ivaynberg/select2
+
+## Installation
+Download or clone this repository and paste in `/protected/extensions/select2`
+
+## Usage
+In your source code
+```php
+Yii::import('ext.select2.Select2');
+```
+Or in config
+```php
+    ...
+    'import' => array(
+        ...
+        'ext.select2.Select2',
+        ...
+    ),
+    ...
+```
 
 ## Example:
 ```php
@@ -21,7 +40,7 @@ Or this
 
 ```php
     ...
-    $this->widget('ext.select2.Select2', array(
+    $this->widget('Select2', array(
        'name' => 'inputName',
        'value' => 2,
        'data' => array(
