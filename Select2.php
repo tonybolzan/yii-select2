@@ -3,10 +3,14 @@
 /**
  * Wrapper Widget to use jQuery Select2 in Yii application.
  *
- * Select2 script:
- * @link https://github.com/ivaynberg/select2
- *
  * @author Tonin R. Bolzan <admin@tonybolzan.com>
+ * @copyright Copyright &copy; 2013 tonybolzan.com
+ * @package extensions
+ * @subpackage select2
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @version 3.3.2
+ *
+ * @see https://github.com/ivaynberg/select2 jQuery Select2
  */
 class Select2 extends CInputWidget {
 
@@ -38,16 +42,6 @@ class Select2 extends CInputWidget {
         } elseif (isset($this->htmlOptions['data-placeholder'])) {
             $this->settings['placeholder'] = $this->htmlOptions['data-placeholder'];
         }
-
-        // Default Messages
-        $this->settings = CMap::mergeArray(array(
-            'formatNoMatches'       => 'js:function () { return "' . Yii::t('Select2.core', "No matches found") . '"; }',
-            'formatInputTooShort'   => 'js:function (input, min) { var n = min - input.length; return "' . Yii::t('Select2.core', "Please enter") . '" + " " + n + " " + "' . Yii::t('Select2.core', "more character") . '" + (n == 1? "" : "' . Yii::t('Select2.core', "s") . '"); }',
-            'formatInputTooLong'    => 'js:function (input, max) { var n = input.length - max; return "' . Yii::t('Select2.core', "Please enter") . '" + " " + n + " " + "' . Yii::t('Select2.core', "less character") . '" + (n == 1? "" : "' . Yii::t('Select2.core', "s") . '"); }',
-            'formatSelectionTooBig' => 'js:function (limit) { return "' . Yii::t('Select2.core', "You can only select") . '" + " " + limit + " " + "' . Yii::t('Select2.core', "item") . '" + (limit == 1 ? "" : "' . Yii::t('Select2.core', "s") . '"); }',
-            'formatLoadMore'        => 'js:function (pageNumber) { return "' . Yii::t('Select2.core', "Loading more results...") . '"; }',
-            'formatSearching'       => 'js:function () { return "' . Yii::t('Select2.core', "Searching...") . '"; }',
-        ), $this->settings);
 
         if (isset($this->htmlOptions['select2Options'])) {
             $this->settings = CMap::mergeArray($this->settings, $this->htmlOptions['select2Options']);
@@ -90,6 +84,12 @@ class Select2 extends CInputWidget {
             $cs->registerScriptFile($this->assetsDir . '/select2.min.js');
             $cs->registerCssFile($this->assetsDir . '/select2.min.css');
         }
+        
+        $lang = strtoupper(str_replace('_', '-', Yii::app()->language));
+        $lang[0] = strtolower($lang[0]);
+        $lang[1] = strtolower($lang[1]);
+        
+        $cs->registerScriptFile($this->assetsDir . '/select2_locale_'.$lang.'.js');
 
         $settings = CJavaScript::encode($this->settings);
         $cs->registerScript("{$id}_select2", "$('#{$id}').select2({$settings});");
