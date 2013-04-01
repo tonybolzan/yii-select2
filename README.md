@@ -1,6 +1,6 @@
 # Select2 for Yii
 
-Wrapper Widget to use jQuery Plugin Select2 in Yii application.
+Wrapper Widget to use jQuery Plugin Select2 in Yii application. Recognized by Igor Vaynberg (Creator of Select2)
 
 Select2 script:
 https://github.com/ivaynberg/select2
