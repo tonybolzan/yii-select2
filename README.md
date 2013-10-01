@@ -25,10 +25,11 @@ Or in config
 ```
 
 ## Example:
-You can replace the
-`CHtml::dropDownList()` by `Select2::dropDownList()`
+You can replace the <br>
+`CHtml::dropDownList()` by `Select2::dropDownList()` <br>
 `CHtml::activeDropDownList()` by `Select2::activeDropDownList()`
-or
+
+Or
 ```php
     ...
     echo Select2::multiSelect("test", null, array('test1','test2'), array(
